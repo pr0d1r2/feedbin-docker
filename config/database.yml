@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: feedbin
+  pool: 19
+  username: feedbin
+  password: feedbin
+  host: postgres
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: feedbin
+  pool: 19
+  username: feedbin
+  password: feedbin
+  host: postgres
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: feedbin
+  pool: 19
+  username: feedbin
+  password: feedbin
+  host: postgres

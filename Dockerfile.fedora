@@ -1,0 +1,23 @@
+FROM fedora:21
+MAINTAINER Lewis
+
+RUN yum -y install tar libssl-dev make curl gcc gcc-c++ git libcurl-devel libxml2-devel libxslt-devel rubygems ruby-devel rubygem-bundler ImageMagick-devel
+
+RUN curl https://s3.amazonaws.com/pkgr-buildpack-ruby/current/fedora-20/ruby-2.1.4.tgz -o - | tar xzf - -C /usr/local
+
+RUN \
+    cd /opt ;\
+    git clone https://github.com/feedbin/feedbin.git ;\
+    cd feedbin ;\
+    gem install bundler redis ;\
+    bundle config build.nokogiri --use-system-libraries ;\
+    bundle install ;\
+    bundle
+
+ADD config/database.yml /opt/feedbin/config/database.yml
+
+ADD startup.sh /feedbin-start
+
+CMD ["/bin/bash", "/feedbin-start"]
+
+EXPOSE 9292
