@@ -24,6 +24,8 @@ RUN \
     bundle install ;\
     bundle
 
+RUN apt-get install -y postgresql
+
 ADD config/database.yml /opt/feedbin/config/database.yml
 
 ADD startup.sh /feedbin-start
