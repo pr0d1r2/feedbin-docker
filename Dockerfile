@@ -28,6 +28,8 @@ RUN apt-get install -y postgresql
 
 ADD config/database.yml /opt/feedbin/config/database.yml
 
+ADD subscriptions_controller.rb /opt/feedbin/app/controllers/subscriptions_controller.rb
+
 ADD startup.sh /feedbin-start
 
 CMD ["/bin/bash", "/feedbin-start"]
